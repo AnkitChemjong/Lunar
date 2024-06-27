@@ -1,6 +1,6 @@
 import {BrowserRouter as Router,Routes,Route} from 'react-router-dom';
-import Form from './compo/form.jsx';
-import Next from './compo/next';
+import Signin from './compo/signin.jsx';
+import Login from './compo/login';
 import Navbar from './compo/Navbar';
 import Home from './compo/Home';
 
@@ -12,8 +12,8 @@ function App() {
        <Navbar></Navbar>
         <Routes>
         <Route path='/' element={<Home></Home>}/>
-          <Route path='/form' element={<Form></Form>}/>
-          <Route path='/next' element={<Next></Next>}/>
+          <Route path='/form' element={<Signin></Signin>}/>
+          <Route path='/next' element={<Login></Login>}/>
         </Routes>
       </Router>
     </>

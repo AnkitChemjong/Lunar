@@ -17,8 +17,8 @@ export default function Navbar() {
       </ul>
     </div>
   </div>
-<Link to='/form'><button className='m-4'>form</button></Link>
-<Link to='/next'><button className='m-4'>next</button></Link>
+<Link to='/form'><button className='m-4'>Signin</button></Link>
+<Link to='/next'><button className='m-4'>Login</button></Link>
 </nav>
     </div>
   )
