@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-export default function form(props) {
+export default function form() {
   return (
     <>
     <form className='d-grid justify-content-center align-items-center '>

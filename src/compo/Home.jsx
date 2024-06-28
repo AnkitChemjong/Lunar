@@ -1,16 +1,15 @@
-import React from 'react';
-import Button from './Button.jsx';
+import Card from './Card.jsx';
+// import {AppCreate} from './Create.jsx';
 
 export default function Home() {
+  // const {phone,name}=useContext(AppCreate);
   return (
-    <div>
-      <img src="rn.jpg"  className="w-25 " style={{borderRadius:'90px',
-    position:"relative",left:"50%",top:"100px",transform:'translate(-50%,-50%)'}}  alt="Ronaldo" />
-    <p className='m-5'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia odio corporis mollitia atque aliquid, similique alias nihil nesciunt perferendis incidunt laborum. Ad inventore commodi quas blanditiis repellat dicta eos dolorum?</p>
-    <Button type="register"/>
-    <Button type="login"/>
-    <Button type="signup"/>
-    
-    </div>
+  <>
+  <div className='row flex-row justify-content-evenly mt-5'>
+  <Card src='rn.jpg' title="cris" desc="Hello cris"/>
+  <Card src='cons.jpg' title="cons of business" desc="Hello cons"/>
+  </div>
+
+  </>
   )
 }
