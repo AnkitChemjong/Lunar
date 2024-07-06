@@ -4,7 +4,6 @@ import Login from './compo/login';
 import Navbar from './compo/Navbar';
 import Home from './compo/Home';
 
-
 function App() {
 
   return (
