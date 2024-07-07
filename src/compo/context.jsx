@@ -9,8 +9,12 @@ export const AppProvider =({ children }) => {
   useEffect(()=>{
       const fetchData = async () => {
         try {
-          const response = await axios.get('http://localhost:8080/user/get');
-          setUser(response.user); // Assuming user data is in response.data
+           await axios.get('http://localhost:8080/user/get',{withCredentials:true}).then((response)=>{
+
+            console.log(response.data);
+            setUser(response.data.user); // Assuming user data is in response.data
+        }).catch((error)=>{});
+
         } catch (error) {
           console.error('Error fetching user data:', error);
           // Optionally handle errors here, e.g., set a default user or display an error message
@@ -18,7 +22,7 @@ export const AppProvider =({ children }) => {
       };
   
       fetchData()
-  })
+  },[])
 
   return (
     <AppContext.Provider value={{ user, setUser }}>

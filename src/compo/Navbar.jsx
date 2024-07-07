@@ -5,7 +5,7 @@ import AppContext from './context.jsx';
 
 export default function Navbar() {
   const navigate = useNavigate();
-  const { user} = useContext(AppContext);  // Ensure setUser is available from AppContext
+  const { user,setUser} = useContext(AppContext);  // Ensure setUser is available from AppContext
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -14,8 +14,8 @@ export default function Navbar() {
 
   const delCookie = async (e) => {
     try {
-      await axios.delete('http://localhost:8080/user/clear');
-      console.log(user);
+      await axios.delete('http://localhost:8080/user/clear',{withCredentials:true});
+      //console.log(user);
       navigate('/');
     } catch (error) {
       console.error('Failed to delete cookie:', error);

@@ -1,6 +1,4 @@
-import { useContext } from 'react';
 import Card from './Card.jsx';
-
 import '../css/home.css';
 export default function Home() {
   return (

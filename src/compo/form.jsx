@@ -26,11 +26,15 @@ export default function form(props) {
       try{
         if(data.userName===''||data.password===''||data.email===''){
           navigate('/form')
+          window.alert("Please fill up credentials")
  
         }
         else{
-          await axios.post('http://localhost:8080/user/create',data);
-          navigate('/')
+          await axios.post('http://localhost:8080/user/create',data).then((response)=>{
+
+            navigate('/next')
+            window.alert("Registered now login")
+          }).catch((error)=>{console.log(error)});
         }
        }
        catch(err){
@@ -45,8 +49,11 @@ export default function form(props) {
  
         }
         else{
-          await axios.post('http://localhost:8080/user/log',data);
+          await axios.post('http://localhost:8080/user/log',data,{ withCredentials: true}).then((response)=>{
+            window.alert("Login Success!")
+          }).catch((error)=>{console.log(error)});
           navigate('/')
+          window.location.reload();
         }
        }
        catch(err){
