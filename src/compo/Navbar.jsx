@@ -16,6 +16,7 @@ export default function Navbar() {
     try {
       await axios.delete('http://localhost:8080/user/clear',{withCredentials:true});
       //console.log(user);
+      window.location.reload();
       navigate('/');
     } catch (error) {
       console.error('Failed to delete cookie:', error);
