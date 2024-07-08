@@ -6,13 +6,14 @@ const AppContext = createContext();
 
 export const AppProvider =({ children }) => {
   const [user, setUser] = useState(null);
+  const [flag,setFlag]=useState(0);
   useEffect(()=>{
       const fetchData = async () => {
         try {
            await axios.get('http://localhost:8080/user/get',{withCredentials:true}).then((response)=>{
 
             console.log(response.data);
-            setUser(response.data.user); // Assuming user data is in response.data
+            setUser(response.data.user); 
         }).catch((error)=>{});
 
         } catch (error) {
@@ -22,10 +23,10 @@ export const AppProvider =({ children }) => {
       };
   
       fetchData()
-  },[])
+  },[flag])
 
   return (
-    <AppContext.Provider value={{ user, setUser }}>
+    <AppContext.Provider value={{ user, setUser,flag,setFlag}}>
       {children}
     </AppContext.Provider>
   );

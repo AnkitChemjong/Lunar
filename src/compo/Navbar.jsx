@@ -5,7 +5,7 @@ import AppContext from './context.jsx';
 
 export default function Navbar() {
   const navigate = useNavigate();
-  const { user,setUser} = useContext(AppContext);  // Ensure setUser is available from AppContext
+  const { user,flag,setFlag} = useContext(AppContext);  // Ensure setUser is available from AppContext
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -13,10 +13,12 @@ export default function Navbar() {
   };
 
   const delCookie = async (e) => {
+    e.preventDefault();
     try {
       await axios.delete('http://localhost:8080/user/clear',{withCredentials:true});
       //console.log(user);
-      window.location.reload();
+      //window.location.reload();
+      setFlag(flag+1);
       navigate('/');
     } catch (error) {
       console.error('Failed to delete cookie:', error);
@@ -49,7 +51,10 @@ export default function Navbar() {
               </Link>
             </div>
           ) : (
-            <div className="relative inline-block text-left">
+            <div className="flex items-center space-x-4">
+              <Link to="/admin">
+                <button className="rounded-md bg-amber-600 px-3 py-2 text-sm font-medium text-white">Admin</button>
+              </Link>
               <div>
                 <button
                   type="button"
@@ -58,7 +63,7 @@ export default function Navbar() {
                   id="menu-button"
                   aria-haspopup="true"
                 >
-                  Logout
+                  {user.userName}
                   <svg className="-mr-1 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                     <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd" />
                   </svg>
@@ -75,7 +80,7 @@ export default function Navbar() {
                   <div className="py-1" role="none">
                     <form role="none" onSubmit={delCookie}>
                       <button type="submit" className="block w-full px-4 py-2 text-left text-sm text-gray-700" role="menuitem" tabIndex={-1} id="menu-item-3">
-                        Sign out
+                        Log Out
                       </button>
                     </form>
                   </div>

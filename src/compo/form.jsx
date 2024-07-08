@@ -1,10 +1,8 @@
-import React, { useState,useContext } from 'react';
-import {useNavigate} from 'react-router-dom';
-import axios from 'axios';
+import React, { useState} from 'react';
 
 
 export default function form(props) {
-  const navigate=useNavigate();
+
   // const [check,setCheck]=useState(null);
     const [data,setData]=useState({
       userName:'',
@@ -21,57 +19,19 @@ export default function form(props) {
     // const handleCheck=()=>{
     //  setCheck('checked');
     // }
-    const reg= async (e)=>{
+    const handleSubmit = (e) => {
       e.preventDefault();
-      try{
-        if(data.userName===''||data.password===''||data.email===''){
-          navigate('/form')
-          window.alert("Please fill up credentials")
- 
-        }
-        else{
-          await axios.post('http://localhost:8080/user/create',data).then((response)=>{
-
-            navigate('/next')
-            window.alert("Registered now login")
-          }).catch((error)=>{console.log(error)});
-        }
-       }
-       catch(err){
-          return err;
-       }
-    }
-    const log= async (e)=>{
-      e.preventDefault();
-      try{
-        if(data.password===''||data.email===''){
-          navigate('/next')
- 
-        }
-        else{
-          await axios.post('http://localhost:8080/user/log',data,{ withCredentials: true}).then((response)=>{
-            window.alert("Login Success!")
-          }).catch((error)=>{console.log(error)});
-          navigate('/')
-          window.location.reload();
-        }
-       }
-       catch(err){
-          console.log(err);
-       }
-    }
+      props.func(e, data);
+  };
+  
 
   return (
     <>
   <div className="flex justify-center items-center h-screen">
-  <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 max-w-md w-full border-8 border-gray-900" onSubmit={props.type === 'signin' ? reg:log}>
-    {props.type === 'signin' ? (
-      <h1 className="text-2xl font-bold mb-4 text-center">Register</h1>
-    ) : (
-      <h1 className="text-2xl font-bold mb-4 text-center">Login</h1>
-    )}
-
-    {props.type === 'signin' ? (
+  <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 max-w-md w-full border-8 border-gray-900" onSubmit={handleSubmit}>
+    {props.type==='Update'? (<button type="button" onClick={props.tog} className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Cancel</button>):null}
+   <h1>{props.type}</h1>
+    {(props.type === 'SignIn' || props.type === 'Update')? (
       <div className="mb-4">
         <label htmlFor="fullName" className="block text-sm font-medium text-gray-700">Full Name</label>
         <input type="text" id="fullName" onChange={handleChange} name="userName" className="border-2 text-center border-gray-900 mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"/>
@@ -98,7 +58,7 @@ export default function form(props) {
     ) : null} */}
 
     <button type="submit" className="border-2 border-gray-900 w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
-      {props.type === 'signin' ? 'Sign in' : 'Login'}
+      {props.type}
     </button>
   </form>
 </div>
