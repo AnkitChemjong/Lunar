@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext,useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import AppContext from './context.jsx';
@@ -11,9 +11,34 @@ export default function Navbar() {
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+  useEffect(() => {
+    let timer;
 
-  const delCookie = async (e) => {
-    e.preventDefault();
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        // Start a timer when the tab becomes hidden
+        timer = setTimeout(() => {
+          delCookie();
+          navigate('/next');
+        }, 1 * 60 * 1000); // 15 minutes
+      } else {
+        // Clear the timer if the tab becomes visible again
+        clearTimeout(timer);
+      }
+    };
+
+    // Add event listener for visibility change
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    // Clean up event listener on component unmount
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      clearTimeout(timer); // Clean up timer if component unmounts
+    };
+  }, []);
+
+  const delCookie = async () => {
+
     try {
       await axios.delete('http://localhost:8080/user/clear',{withCredentials:true});
       //console.log(user);
@@ -71,7 +96,7 @@ export default function Navbar() {
               </div>
               {isOpen && (
                 <div
-                  className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                  className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none mt-20"
                   role="menu"
                   aria-orientation="vertical"
                   aria-labelledby="menu-button"
