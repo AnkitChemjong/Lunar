@@ -32,7 +32,7 @@ export default function Table() {
     }
     const updateUser=(e,data)=>{
        // console.log(temp);
-        axios.patch(`http://localhost:8080/user/updateUser/${temp}`,data).then(()=>{
+        axios.put(`http://localhost:8080/user/updateUser/${temp}`,data).then(()=>{
             setFlag(flag+1);
             window.alert('User Updated');
             setToggle(!toggle)
