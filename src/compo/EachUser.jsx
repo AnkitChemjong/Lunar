@@ -13,10 +13,10 @@ const EachUser = () => {
       </a>
       <div className="p-5">
         <h1 className="text-xl font-bold mb-3">User ID: {id}</h1>
-        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Username: {data.userName}</p>
-        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Password: {data.password}</p>
-        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Salt: {data.salt}</p>
-        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Created At: {data.createdAt}</p>
+        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Username:-{data.userName}</p>
+        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Password:-{data.password}</p>
+        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Salt:-{data.salt}</p>
+        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Created At:-{data.createdAt}</p>
       </div>
     </div>
   </div>
