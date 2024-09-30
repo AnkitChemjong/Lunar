@@ -68,9 +68,9 @@ export default function Table() {
                 return (
                     <>
                     <tr className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700" key={users.id}>
-                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                       {users.id}
-                    </th>
+                    </td>
                     <td className="px-6 py-4 border border-gray-200 dark:border-gray-700">
                     {users.userName}
                     </td>
