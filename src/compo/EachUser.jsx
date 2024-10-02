@@ -9,7 +9,7 @@ const EachUser = () => {
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
     <div className="max-w-xl bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex-wrap p-5">
       <a href="#">
-        <img className="rounded-t-lg" src="rn.jpg" alt="Blog Post" />
+        <img className="rounded-t-lg" src="cons.jpg" alt="Blog Post" />
       </a>
       <div className="p-5">
         <h1 className="text-xl font-bold mb-3">User ID: {id}</h1>
